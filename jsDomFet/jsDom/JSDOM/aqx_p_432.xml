@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<aqx_p_432>
+  <data>
+    <sitename>基隆</sitename>
+    <county>基隆市</county>
+    <aqi>32</aqi>
+    <pollutant/>
+    <status>良好</status>
+    <so2>1.9</so2>
+    <co>0.21</co>
+    <o3>43.1</o3>
+    <o3_8hr>35.5</o3_8hr>
+    <pm10>14</pm10>
+    <pm2.5>4</pm2.5>
+    <no2>12.2</no2>
+    <nox>13</nox>
+    <no>0.7</no>
+    <wind_speed>0.5</wind_speed>
+    <wind_direc>318</wind_direc>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+    <co_8hr>0.1</co_8hr>
+    <pm2.5_avg>2.8</pm2.5_avg>
+    <pm10_avg>11</pm10_avg>
+    <so2_avg>1</so2_avg>
+    <longitude>121.760056</longitude>
+    <latitude>25.129167</latitude>
+    <siteid>1</siteid>
+  </data>
+  <data>
+    <sitename>汐止</sitename>
+    <county>新北市</county>
+    <aqi>28</aqi>
+    <status>良好</status>
+    <pm2.5>7</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>萬里</sitename>
+    <county>新北市</county>
+    <aqi>25</aqi>
+    <status>良好</status>
+    <pm2.5>8</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>新店</sitename>
+    <county>新北市</county>
+    <aqi>30</aqi>
+    <status>良好</status>
+    <pm2.5>8</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>土城</sitename>
+    <county>新北市</county>
+    <aqi>15</aqi>
+    <status>良好</status>
+    <pm2.5>0</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>板橋</sitename>
+    <county>新北市</county>
+    <aqi>20</aqi>
+    <status>良好</status>
+    <pm2.5>1</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>新莊</sitename>
+    <county>新北市</county>
+    <aqi>33</aqi>
+    <status>良好</status>
+    <pm2.5>9</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>菜寮</sitename>
+    <county>新北市</county>
+    <aqi>26</aqi>
+    <status>良好</status>
+    <pm2.5>6</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>林口</sitename>
+    <county>新北市</county>
+    <aqi>29</aqi>
+    <status>良好</status>
+    <pm2.5>8</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>淡水</sitename>
+    <county>新北市</county>
+    <aqi>28</aqi>
+    <status>良好</status>
+    <pm2.5>7</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>士林</sitename>
+    <county>臺北市</county>
+    <aqi>22</aqi>
+    <status>良好</status>
+    <pm2.5>3</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>中山</sitename>
+    <county>臺北市</county>
+    <aqi>27</aqi>
+    <status>良好</status>
+    <pm2.5>6</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>萬華</sitename>
+    <county>臺北市</county>
+    <aqi>19</aqi>
+    <status>良好</status>
+    <pm2.5>2</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>古亭</sitename>
+    <county>臺北市</county>
+    <aqi>31</aqi>
+    <status>良好</status>
+    <pm2.5>9</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>松山</sitename>
+    <county>臺北市</county>
+    <aqi>25</aqi>
+    <status>良好</status>
+    <pm2.5>5</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>大同</sitename>
+    <county>臺北市</county>
+    <aqi>35</aqi>
+    <status>良好</status>
+    <pm2.5>10</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>桃園</sitename>
+    <county>桃園市</county>
+    <aqi>27</aqi>
+    <status>良好</status>
+    <pm2.5>6</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>中壢</sitename>
+    <county>桃園市</county>
+    <aqi>55</aqi>
+    <status>普通</status>
+    <pm2.5>18</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>湖口</sitename>
+    <county>新竹縣</county>
+    <aqi>110</aqi>
+    <status>對敏感族群不健康</status>
+    <pm2.5>42</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+  <data>
+    <sitename>西屯</sitename>
+    <county>臺中市</county>
+    <aqi>165</aqi>
+    <status>對所有族群不健康</status>
+    <pm2.5>75</pm2.5>
+    <publishtime>2024/09/25 21:00:00</publishtime>
+  </data>
+</aqx_p_432>

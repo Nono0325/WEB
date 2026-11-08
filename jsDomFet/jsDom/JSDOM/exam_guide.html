@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 技術與應用 — 考前重點講義與模擬試題</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --accent: #0f766e;
+            --accent-light: #f0fdfa;
+            --warn-bg: #fffbeb;
+            --warn-border: #f59e0b;
+            --danger-bg: #fef2f2;
+            --danger-border: #ef4444;
+            --dark: #0f172a;
+            --gray-bg: #f8fafc;
+            --card-border: #e2e8f0;
+            --text-main: #334155;
+            --text-dark: #1e293b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--text-main);
+            line-height: 1.65;
+        }
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 60%, #2563eb 100%);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            max-width: 820px;
+            margin: 0 auto 1.25rem;
+        }
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        .nav-pill {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.2s;
+        }
+        .nav-pill:hover {
+            background: white;
+            color: var(--primary-dark);
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .topic-section {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .topic-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+        .topic-header h2 {
+            font-size: 1.45rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .badge-quiz {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        h3 {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin: 1.35rem 0 0.6rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 0.85rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.85rem 0 1.25rem;
+            font-size: 0.94rem;
+        }
+        th, td {
+            border: 1px solid var(--card-border);
+            padding: 9px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f1f5f9;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        tr:nth-child(even) td {
+            background: #fafaf9;
+        }
+        code {
+            background: #f1f5f9;
+            color: #be123c;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 0.75rem 0 1.1rem;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: inherit;
+        }
+        .callout {
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid var(--primary);
+            background: var(--primary-light);
+        }
+        .callout-warn {
+            border-left-color: var(--warn-border);
+            background: var(--warn-bg);
+        }
+        .callout-danger {
+            border-left-color: var(--danger-border);
+            background: var(--danger-bg);
+        }
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            color: var(--dark);
+        }
+        .quiz-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            background: #ffffff;
+        }
+        .quiz-q {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.05rem;
+            margin-bottom: 0.65rem;
+        }
+        details {
+            margin-top: 0.75rem;
+            background: var(--accent-light);
+            border: 1px solid #99f6e4;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--accent);
+            user-select: none;
+        }
+        .ans-body {
+            margin-top: 0.75rem;
+            padding-top: 0.65rem;
+            border-top: 1px dashed #5eead4;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        @media print {
+            header { background: none; color: black; border-bottom: 2px solid black; padding: 1rem 0; }
+            .nav-bar { display: none; }
+            .topic-section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+            details { open: true; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Web 技術與應用 — 考前重點講義與模擬題庫</h1>
+    <p>完整涵蓋五大必考範圍：① HTML 超連結 (ch06) ｜ ② 圖片與影像地圖 (ch07) ｜ ③ Well-Formed XML 與命名空間 (xmlch02~05) ｜ ④ DTD 文件型態定義 (xmlch06, 08) ｜ ⑤ XML DOM 與 dom-8.html (MVSJSDOMFetch)</p>
+    <div class="nav-bar">
+        <a href="index.html" class="nav-pill">⬅ 返回作業成果導覽首頁</a>
+        <a href="#sec-link" class="nav-pill">1. 超連結</a>
+        <a href="#sec-img" class="nav-pill">2. 圖片與地圖索引</a>
+        <a href="#sec-wf" class="nav-pill">3. Well-Formed XML</a>
+        <a href="#sec-dtd" class="nav-pill">4. DTD 文件型態定義</a>
+        <a href="#sec-dom8" class="nav-pill">5. DOM 與 dom-8.html</a>
+        <a href="#sec-quiz" class="nav-pill" style="background:#f59e0b;border-color:#f59e0b;color:#fff;">📝 考前模擬試題 (含解答)</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- ==================== 1. 超連結 ==================== -->
+    <section id="sec-link" class="topic-section">
+        <div class="topic-header">
+            <h2>一、HTML 超連結 (Hyperlinks)</h2>
+            <span class="badge">對應教材：mvshtmlch06.ppt / htmlch06.zip</span>
+        </div>
+
+        <h3>1. URL 格式與 7 種 Scheme (服務協定)</h3>
+        <ul>
+            <li><strong>URL 標準格式</strong>：<code>scheme://host[:port]/path/filename</code>
+                <ul>
+                    <li><code>scheme</code>：連線服務協定（下表 7 種）</li>
+                    <li><code>host</code>：連接電腦的 IP 位址或領域名稱 (Domain Name)</li>
+                    <li><code>port</code>：伺服器埠號（一般 Web Server 預設為 <code>80</code>，可省略）</li>
+                    <li><code>path</code>：檔案路徑名稱；<code>filename</code>：被連結的檔案名稱</li>
+                </ul>
+            </li>
+        </ul>
+        <table>
+            <tr>
+                <th>Scheme</th>
+                <th>名稱與用途說明</th>
+                <th>宣告範例</th>
+            </tr>
+            <tr>
+                <td><code>http</code></td>
+                <td>超本文傳輸協定 (HyperText Transfer Protocol)，供 Web 伺服器傳送 HTML 網頁至瀏覽器。</td>
+                <td><code>&lt;a href="http://www.nfu.edu.tw"&gt;國立虎尾科技大學&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>file</code></td>
+                <td>連結至<strong>本地 (Local) 電腦</strong>上的檔案，不可用於需經 Internet 網路的擷取。</td>
+                <td><code>&lt;a href="file:///e|/chart-7/link-d.htm"&gt;日記告白&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>ftp</code></td>
+                <td>檔案傳輸協定 (File Transfer Protocol)，用於 FTP 伺服器檔案上傳或下載。</td>
+                <td><code>&lt;a href="ftp://ftp.tku.edu.tw/ftp/incoming/"&gt;檔案下載&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>mailto</code></td>
+                <td>電子郵件服務，將信件寄給郵件伺服器上的某個帳號。</td>
+                <td><code>&lt;a href="mailto:diy@mail.hpdiy.com.tw"&gt;留言&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>telnet</code> / <code>news</code> / <code>gopher</code></td>
+                <td>遠端登入服務 (<code>telnet</code>)、網路新聞群組 (<code>news</code>)、選單式資訊檢索 (<code>gopher</code>)。</td>
+                <td>Internet 常見 7 種 scheme 之一</td>
+            </tr>
+        </table>
+
+        <h3>2. 相對路徑 vs. 絕對路徑 與 <code>&lt;base&gt;</code> 標籤</h3>
+        <div class="callout">
+            <div class="callout-title">💡 為什麼課本強力推薦使用「相對路徑」？</div>
+            同一網站內的網頁以相對路徑設定超連結（瀏覽器會自動組合：<code>目前路徑 + 相對路徑</code>），當整個網站要搬移到另一台 Server 伺服器時，直接把整個目錄 Copy 過去即可運作，不必逐一修改網址。只有在連往「非本站（外部網站）」時才用絕對路徑。
+        </div>
+        <table>
+            <tr>
+                <th>連結目標</th>
+                <th>寫法規則</th>
+                <th>課程範例</th>
+            </tr>
+            <tr>
+                <td><strong>同層目錄</strong>檔案</td>
+                <td>直接寫檔名</td>
+                <td><code>&lt;a href="research.html"&gt;研究方向&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><strong>次層 (子) 目錄</strong>檔案</td>
+                <td><code>次目錄名稱/檔名</code></td>
+                <td><code>&lt;a href="ch061/link-b.html"&gt;伊蔻的日記告白&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><strong>上層 (父) 目錄</strong>檔案</td>
+                <td>以 <code>../</code> 代表上一層目錄</td>
+                <td><code>&lt;a href="../6-2.html"&gt;回上頁&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><strong>指定基準相對位址 <code>&lt;base&gt;</code></strong></td>
+                <td>只能定義在檔頭區 <code>&lt;head&gt;...&lt;/head&gt;</code> 內，作為 <code>&lt;body&gt;</code> 所有相對超連結的基準。</td>
+                <td><code>&lt;head&gt;&lt;base href="http://localhost:51056/htmlch05" /&gt;&lt;/head&gt;</code></td>
+            </tr>
+        </table>
+
+        <h3>3. 連接到同一個檔案或另一個檔案的某一段（錨點 / 標號）</h3>
+        <ol>
+            <li><strong>步驟一（設定標號名稱）</strong>：在目標位置使用 <code>name</code> 屬性：<br>
+                <code>&lt;a name="date-1"&gt;日期：1995.02.11&lt;/a&gt;</code></li>
+            <li><strong>步驟二（超連結呼叫標號）</strong>：在 <code>href</code> 的標號名稱前加上 <strong><code>#</code></strong> 符號：
+                <ul>
+                    <li>連到<strong>同一個檔案</strong>的某段：<code>&lt;a href="#date-1"&gt;日期：1995.02.11&lt;/a&gt;</code></li>
+                    <li>連到<strong>另一個檔案</strong>的某段（<code>檔名#標號</code>）：<code>&lt;a href="6-5.html#date-1"&gt;[日期：1996.02.11]&lt;/a&gt;</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>4. 超連結顏色設定與快速鍵 (AccessKey)</h3>
+        <ul>
+            <li><strong>超連結顏色（設定於 <code>&lt;body&gt;</code> 標籤內）</strong>：
+                <code>&lt;body link="顏色" vlink="顏色" alink="顏色"&gt;</code>
+                <ul>
+                    <li><code>link</code>：<strong>尚未被點選過</strong>的超連結顏色。</li>
+                    <li><code>vlink</code>：<strong>已被點選過</strong>的超連結顏色（範例 6-7 設為綠色）。</li>
+                    <li><code>alink</code>：<strong>被滑鼠按下時（按著不放、尚未放開）</strong>的顏色（範例 6-7 設為粉紅色）。</li>
+                </ul>
+            </li>
+            <li><strong>快速鍵設定（設定於 <code>&lt;a&gt;</code> 標籤內）</strong>：
+                <code>&lt;a href="6-5.html#date-2" accesskey="b"&gt;[日期：1996.02.25](alt+b)&lt;/a&gt;</code>
+                <ul>
+                    <li><code>accesskey</code> 設定值為英文字母（不分大小寫），按下 <strong><code>Alt + 英文字母</code></strong> 會聚焦到該超連結。</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ==================== 2. 圖 ==================== -->
+    <section id="sec-img" class="topic-section">
+        <div class="topic-header">
+            <h2>二、HTML 圖片與影像地圖 (Images &amp; Image Map)</h2>
+            <span class="badge">對應教材：mvshtmlch07.ppt / htmlch07.zip</span>
+        </div>
+
+        <h3>1. 圖檔格式、背景圖與插入圖片 <code>&lt;img&gt;</code></h3>
+        <ul>
+            <li><strong>常見網頁圖檔格式</strong>：<code>gif</code>（支援動畫如 <code>google.gif</code>）、<code>jpg</code>、<code>png</code>。</li>
+            <li><strong>網頁背景圖案設定</strong>：在 <code>&lt;body&gt;</code> 內使用 <code>background</code> 屬性：
+                <code>&lt;body background="../homepage/graph/bg1.jpg"&gt;</code></li>
+            <li><strong>插入圖片與常用屬性</strong>（單位皆為像素 <code>pixel</code>，結尾 <code>&lt;/img&gt;</code> 通常省略）：
+                <pre><code>&lt;img src="google.gif" alt="文字說明" width="240" height="150" align="left" hspace="50" vspace="20"&gt;</code></pre>
+            </li>
+        </ul>
+        <table>
+            <tr>
+                <th>屬性名稱</th>
+                <th>功能與設定值說明</th>
+            </tr>
+            <tr>
+                <td><code>src="url"</code> / <code>alt="文字"</code></td>
+                <td><code>src</code> 指定圖檔位址；<code>alt</code> 為圖片的文字說明。</td>
+            </tr>
+            <tr>
+                <td><code>width="n"</code> / <code>height="n"</code></td>
+                <td>設定圖片寬度與高度，單位為像素 (pixel)。</td>
+            </tr>
+            <tr>
+                <td><code>hspace="n"</code> / <code>vspace="n"</code></td>
+                <td><code>hspace</code>：圖片<strong>左右兩旁（水平方向）</strong>與文字間的縫隙 (pixel)；<br><code>vspace</code>：圖片<strong>上下兩端（垂直方向）</strong>與文字間的縫隙 (pixel)。</td>
+            </tr>
+            <tr>
+                <td><code>align="?"</code><br>（文字與圖片排列）</td>
+                <td>
+                    • <code>bottom</code>（<strong>內定值/預設值</strong>）：文字的第一列與圖片<strong>下方</strong>對齊<br>
+                    • <code>middle</code>：文字的第一列與圖片<strong>中間</strong>對齊<br>
+                    • <code>top</code>：文字的第一列與圖片<strong>上方</strong>對齊<br>
+                    • <code>left</code>：<strong>圖片靠左</strong>顯示，文字從圖片右上方往下顯示<br>
+                    • <code>right</code>：<strong>圖片靠右</strong>顯示，文字從圖片左上方往下顯示
+                </td>
+            </tr>
+        </table>
+
+        <h3>2. 圖片作為超連結 與 地圖索引 (Image Map 影像地圖)</h3>
+        <ul>
+            <li><strong>圖片超連結</strong>：將 <code>&lt;img src="url"&gt;</code> 放在 <code>&lt;a href="url"&gt;...&lt;/a&gt;</code> 中間。</li>
+            <li><strong>地圖索引 (Image Map) 語法結構</strong>（課堂作業 <code>hw7-2.html</code> 虎科大地圖 <code>nfu.gif</code> 必考！）：</li>
+        </ul>
+        <pre><code>&lt;map name="圖片名稱"&gt;
+    &lt;!-- 1. 長方形 (學生活動中心)：左上角 (x1,y1) 與 右下角 (x2,y2) --&gt;
+    &lt;area shape="rect" coords="295,85,387,218" href="act.html" alt="學生活動中心"&gt;
+
+    &lt;!-- 2. 圓形 (圖書館)：圓心座標 (x1,y1) 與 半徑 r (單位 pixel) --&gt;
+    &lt;area shape="circle" coords="193,130,80" href="lib.html" alt="虎尾科技大學圖書館"&gt;
+
+    &lt;!-- 3. 多邊形 (綜一館)：依順時鐘或逆時鐘方向列出各個頂點角座標 (x1,y1,x2,y2,x3,y3...) --&gt;
+    &lt;area shape="poly" coords="583,8,608,82,664,64,642,9" href="b1.html" alt="綜一館"&gt;
+&lt;/map&gt;
+&lt;img src="nfu.gif" usemap="#圖片名稱"&gt;</code></pre>
+    </section>
+
+    <!-- ==================== 3. Well-Formed XML ==================== -->
+    <section id="sec-wf" class="topic-section">
+        <div class="topic-header">
+            <h2>三、Well-Formed XML（良構的 XML 文件）與 Namespaces</h2>
+            <span class="badge">對應教材：xmlch02.ppt ~ xmlch05.ppt</span>
+        </div>
+
+        <h3>1. Well-Formed XML vs. Validating XML 與字碼集</h3>
+        <ul>
+            <li><strong>字集設定</strong>：第一列 <code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code> 中，<code>encoding</code> 必須與檔案實際存檔編碼一致。若省略 <code>encoding</code> 或省略整行宣告，則預設採用 <strong>Unicode (<code>UTF-8</code> 或 <code>UTF-16</code>)</strong>，不可用 Big5。</li>
+            <li><strong>Well-Formed XML 文件</strong>：滿足 XML 基本語法規則，且<strong>沒有引用任何 DTD</strong>（使用 <em>non-Validating parser</em> 檢查）。</li>
+            <li><strong>Validating XML 文件</strong>（使用 <em>Validating parser</em> 檢查），必須同時滿足 <strong>4 大條件</strong>：
+                <ol>
+                    <li>該份 XML 文件本身是 <strong>Well-Formed</strong>。</li>
+                    <li>該份 XML 文件<strong>有引用 DTD（或 XML Schema）</strong>。</li>
+                    <li>所引用的 DTD / XML Schema <strong>本身語法正確</strong>。</li>
+                    <li>XML 文件內容結構<strong>完全遵守 DTD / XML Schema 的規則</strong>。</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>2. XML 物件命名規則（標籤、元素、屬性、實體通用）</h3>
+        <div class="two-col">
+            <div class="callout">
+                <div class="callout-title">✅ 命名 3 大鐵律</div>
+                <ol>
+                    <li><strong>開頭第一個字元</strong>：必須是 <strong>「文字（英文字母或中文字）」、<code>_</code> 或 <code>:</code></strong>（絕對不可以是數字、<code>.</code>、<code>-</code> 或其他符號）。</li>
+                    <li><strong>不可有空白格</strong>：名稱中間不能出現空格。</li>
+                    <li><strong>允許字元</strong>：只能由「文字、數字、<code>_</code>、<code>-</code>、<code>.</code>、<code>:</code>」組成。</li>
+                </ol>
+                <p><strong>合法範例</strong>：<code>Name</code>、<code>_Name</code>、<code>First-Name</code>、<code>First.Name</code>、<code>_875ROM</code>、<code>職業</code></p>
+            </div>
+            <div class="callout callout-danger">
+                <div class="callout-title">❌ 常見錯誤命名（考試陷阱）</div>
+                <ul>
+                    <li><code>875ROM</code> ❌（開頭不可以是數字）</li>
+                    <li><code>.875ROM</code> ❌（開頭不可以是 <code>.</code>）</li>
+                    <li><code>First Name</code> ❌（中間有空白格）</li>
+                    <li><code>First%Name</code>、<code>First*Name</code> ❌（含有非法符號 <code>%</code>、<code>*</code>）</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>3. Well-Formed XML 十大必考條件（改錯題檢核表）</h3>
+        <table>
+            <tr>
+                <th>條件項目</th>
+                <th>正確規範與常見錯誤範例</th>
+            </tr>
+            <tr>
+                <td>1. XML 宣告指令</td>
+                <td>若有寫必須在<strong>第一列</strong>，<code>&lt;?xml</code> 中間<strong>不可有空白</strong>，<code>xml</code> 必小寫，且必須有 <code>version="1.0"</code>，結尾為 <code>?&gt;</code>。</td>
+            </tr>
+            <tr>
+                <td>2. 唯一根節點 (Root)</td>
+                <td>XML 是一個 Tree 結構，文件本體區<strong>只能有一個根標籤</strong>涵蓋所有子標籤與資料。</td>
+            </tr>
+            <tr>
+                <td>3. 對稱型標籤成對</td>
+                <td>有開始 <code>&lt;tag&gt;</code> 就必須有結束 <code>&lt;/tag&gt;</code>，不可省略任一，且結束斜線在前面（寫成 <code>&lt;discount/&gt;</code> 當結尾是錯的）。</td>
+            </tr>
+            <tr>
+                <td>4. 空標籤格式</td>
+                <td>空標籤結束前必須加上 <code>/</code>，如 <code>&lt;hr size="5"/&gt;</code>、<code>&lt;p /&gt;</code>、<code>&lt;img src="gif" /&gt;</code>。</td>
+            </tr>
+            <tr>
+                <td>5. 滿足巢狀排列</td>
+                <td>對稱型標籤不可互相重疊交錯！<br>❌ <code>&lt;name&gt;陳彼德&lt;birthday&gt;&lt;/name&gt;02/21/1972&lt;/birthday&gt;</code></td>
+            </tr>
+            <tr>
+                <td>6. 大小寫有別</td>
+                <td>英文字母大小寫視為不同標籤！<code>&lt;price&gt;12100&lt;/Price&gt;</code> ❌（<code>p</code> 與 <code>P</code> 不同）。</td>
+            </tr>
+            <tr>
+                <td>7. 屬性值必加引號</td>
+                <td>屬性值必須用成對的 <code>"..."</code> 或 <code>'...'</code> 包起來（<code>id=X123</code> ❌、<code>currency='NT"</code> ❌）。</td>
+            </tr>
+            <tr>
+                <td>8. 不可重複屬性</td>
+                <td><strong>同一個標籤內</strong>相同屬性只能設定一次（不同標籤則可出現相同屬性名）。</td>
+            </tr>
+            <tr>
+                <td>9. 特殊字元實體引用</td>
+                <td>5 個特殊字元必須用代替符號：<br>
+                    <code>&amp;</code> &rarr; <code>&amp;amp;</code> ｜
+                    <code>&lt;</code> &rarr; <code>&amp;lt;</code> ｜
+                    <code>&gt;</code> &rarr; <code>&amp;gt;</code> ｜
+                    <code>"</code> &rarr; <code>&amp;quot;</code> ｜
+                    <code>'</code> &rarr; <code>&amp;apos;</code>
+                    <br>（或者使用 <code>&lt;![CDATA[ ... ]]&gt;</code> 區塊原封不動顯示純文字；註解為 <code>&lt;!-- ... --&gt;</code>）
+                </td>
+            </tr>
+            <tr>
+                <td>10. 正確物件名稱</td>
+                <td>遵守上方命名規則，且標籤括號與斜線間不可亂加空白（如 <code>&lt; /課程 &gt;</code> ❌）。</td>
+            </tr>
+        </table>
+
+        <h3>4. Namespaces（名稱空間，第五章 <code>xmlch05.ppt</code>）</h3>
+        <ul>
+            <li><strong>使用原因</strong>：① 引用不同的標示語言（如 XHTML 與 MathML 混用）、② 避免同名標籤/屬性的衝突。</li>
+            <li><strong>明確宣告 vs. 內定宣告</strong>：
+                <ul>
+                    <li><strong>明確宣告</strong>：<code>xmlns:aw="http://www.aecro.com.tw/ns/aw/1.2"</code> &rarr; 使用時加前綴 <code>&lt;aw:person&gt;</code>。</li>
+                    <li><strong>內定宣告</strong>：<code>xmlns="http://www.aecro.com.tw/ns/op/1.0"</code> &rarr; 不加 <code>:名稱</code>，涵蓋該標籤及其所有子標籤。</li>
+                </ul>
+            </li>
+            <li><strong>必考三大規則</strong>：
+                <ol>
+                    <li><strong>覆蓋原則</strong>：明確宣告一定會覆蓋內定宣告；若同為內定或同為明確，則引用距離最近（最內層）的宣告。</li>
+                    <li><strong>屬性不適用內定宣告</strong>：內定宣告（<code>xmlns="URI"</code>）<strong>只作用在標籤名稱，無法作用於屬性</strong>！屬性預設是「無 Namespaces」，若屬性要用 Namespace <strong>必須使用明確宣告</strong>（如 <code>op:number="A1"</code>）。</li>
+                    <li><strong>屬性 URI 衝突</strong>：同一標籤中若兩個屬性使用不同前綴（如 <code>a:sex="男" b:sex="男"</code>），但 <code>a</code> 與 <code>b</code> 對應的 <strong>URI 完全相同</strong>，仍視為重複屬性（Not Well-Formed XML）！</li>
+                </ol>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ==================== 4. DTD ==================== -->
+    <section id="sec-dtd" class="topic-section">
+        <div class="topic-header">
+            <h2>四、DTD 文件型態定義 (Document Type Definition)</h2>
+            <span class="badge">對應教材：xmlch06.ppt &amp; xmlch08.ppt (DoD / dpp)</span>
+        </div>
+
+        <h3>1. DTD 宣告方式（內部 DTD vs. 外部 DTD）</h3>
+        <pre><code>&lt;!-- 1. 內部 DTD：直接寫在 XML 檔頭區 --&gt;
+&lt;!DOCTYPE PersonData [
+    &lt;!ELEMENT PersonData (name, birthday, occupation+, spouse?, email*)&gt;
+    &lt;!ELEMENT name (#PCDATA)&gt;
+]&gt;
+
+&lt;!-- 2. 外部私人 DTD (SYSTEM) --&gt;
+&lt;!DOCTYPE PersonData SYSTEM "6-5.dtd"&gt;
+
+&lt;!-- 3. 外部公開共用 DTD (PUBLIC)，名稱格式為 "-//制定者//敘述//語言" --&gt;
+&lt;!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.2//EN" "http://www.wapforum.org/DTD/wml12.dtd"&gt;</code></pre>
+
+        <h3>2. 元素設定 <code>&lt;!ELEMENT&gt;</code> 與出現次數符號</h3>
+        <table>
+            <tr>
+                <th>元素型態 / 符號</th>
+                <th>語法範例</th>
+                <th>重點說明</th>
+            </tr>
+            <tr>
+                <td>一般文字 <code>(#PCDATA)</code></td>
+                <td><code>&lt;!ELEMENT name (#PCDATA)&gt;</code></td>
+                <td>元素內容為一般可剖析文字資料。</td>
+            </tr>
+            <tr>
+                <td>空元素 <code>EMPTY</code></td>
+                <td><code>&lt;!ELEMENT breakline EMPTY&gt;</code></td>
+                <td>在 XML 本體中對應空標籤 <code>&lt;breakline /&gt;</code>，不可包任何資料。</td>
+            </tr>
+            <tr>
+                <td>不限次序與次數 <code>ANY</code></td>
+                <td><code>&lt;!ELEMENT PersonData ANY&gt;</code></td>
+                <td>可包含任何已宣告元素或文字，不限次序與次數（每個 DTD 只允許一個 <code>ANY</code>）。</td>
+            </tr>
+            <tr>
+                <td>選擇型元素 <code>(A | B)</code></td>
+                <td><code>&lt;!ELEMENT 銀行代款 (國內銀行|國外銀行)&gt;</code></td>
+                <td>子元素只能<strong>二選一</strong>出現（不可同時出現，也不可都不出現）。</td>
+            </tr>
+            <tr>
+                <td>混合型元素</td>
+                <td><code>&lt;!ELEMENT email (#PCDATA|hotmail|yahoo)*&gt;</code></td>
+                <td>可同時包含文字與子元素，<code>#PCDATA</code> 必須寫在最前面。</td>
+            </tr>
+            <tr>
+                <td><strong>出現次數符號</strong></td>
+                <td><code>無符號</code> = <strong>恰 1 次（內定值）</strong><br>
+                    <code>?</code> = <strong>0 或 1 次</strong><br>
+                    <code>*</code> = <strong>&ge; 0 次（0、1 或多次）</strong><br>
+                    <code>+</code> = <strong>&ge; 1 次（至少 1 次）</strong></td>
+                <td>例：<code>(name, occupation+, spouse?, email*)</code><br>
+                    &rarr; <code>name</code> 必 1 次、<code>occupation</code> 至少 1 次、<code>spouse</code> 0~1 次、<code>email</code> 0~多次。</td>
+            </tr>
+        </table>
+
+        <h3>3. 屬性設定 <code>&lt;!ATTLIST&gt;</code>：4 種內定值 與 10 種屬性型態</h3>
+        <p><strong>基本語法</strong>：<code>&lt;!ATTLIST 元素名稱 屬性名稱 屬性型態(Type) 內定值型態(Default-value)&gt;</code></p>
+        <div class="two-col">
+            <div>
+                <table>
+                    <tr>
+                        <th colspan="2">4 種屬性內定值型態 (Default-value)</th>
+                    </tr>
+                    <tr>
+                        <td><code>#REQUIRED</code></td>
+                        <td>元素中<strong>必須出現</strong>該屬性（必填）。</td>
+                    </tr>
+                    <tr>
+                        <td><code>#IMPLIED</code></td>
+                        <td>元素中<strong>可以不用出現</strong>該屬性（選填）。</td>
+                    </tr>
+                    <tr>
+                        <td><code>#FIXED "值"</code></td>
+                        <td>屬性值<strong>固定不可變</strong>（省略時自動帶入；有寫則必等於該值）。</td>
+                    </tr>
+                    <tr>
+                        <td><code>"預設字串"</code></td>
+                        <td>有內定值（省略時自動帶入；有寫時可改為其他合法值）。</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th colspan="2">常考屬性資料型態 (共 10 種)</th>
+                    </tr>
+                    <tr>
+                        <td><code>CDATA</code></td>
+                        <td>一般文字與數字字串。</td>
+                    </tr>
+                    <tr>
+                        <td><code>(值1|值2)</code></td>
+                        <td><strong>Enumerated 列舉型態</strong>（例：<code>(男|女) "男"</code>）。</td>
+                    </tr>
+                    <tr>
+                        <td><code>NMTOKEN</code> / <code>NMTOKENS</code></td>
+                        <td>由文字、數字、<code>. : _ -</code> 組成，<strong>開頭可以是數字</strong>（如 <code>123-YY1</code> 合法）；<code>NMTOKENS</code> 以空白隔開多個值。</td>
+                    </tr>
+                    <tr>
+                        <td><code>ID</code> / <code>IDREF</code> / <code>IDREFS</code></td>
+                        <td><code>ID</code> 全文件唯一且<strong>開頭不可是數字</strong>；<code>IDREF</code> 必須參考文件中已存在的 <code>ID</code> 值。</td>
+                    </tr>
+                    <tr>
+                        <td><code>ENTITY</code> / <code>ENTITIES</code> / <code>NOTATION</code></td>
+                        <td>外部實體（單一/多個空白分隔）與已宣告的 Notation。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. DOM & dom-8.html ==================== -->
+    <section id="sec-dom8" class="topic-section">
+        <div class="topic-header">
+            <h2>五、JavaScript XML DOM 與 <code>dom-8.html</code> 深度解析</h2>
+            <span class="badge">對應教材：MVSJSDOMFetch.pptx / dom-1 ~ dom-8.html</span>
+        </div>
+
+        <h3>1. DOM 節點類型 (<code>nodeType</code>) 與核心 API</h3>
+        <table>
+            <tr>
+                <th>Node Type 名稱</th>
+                <th><code>nodeType</code> 值</th>
+                <th>重點說明與常用 API</th>
+            </tr>
+            <tr>
+                <td><strong>Element（元素節點）</strong></td>
+                <td><strong><code>1</code></strong></td>
+                <td>標籤節點（如 <code>&lt;book&gt;</code>）。走訪 <code>childNodes</code> 時必用 <code>if (node.nodeType == 1)</code> 過濾！</td>
+            </tr>
+            <tr>
+                <td><strong>Attribute（屬性節點）</strong></td>
+                <td><strong><code>2</code></strong></td>
+                <td>標籤屬性（如 <code>sales="Y"</code>），可用 <code>elem.getAttribute("sales")</code> 讀取。</td>
+            </tr>
+            <tr>
+                <td><strong>Text（文字節點）</strong></td>
+                <td><strong><code>3</code></strong></td>
+                <td>文字內容，<strong>包含 XML 標籤與標籤之間的「換行與縮排空白」</strong>！</td>
+            </tr>
+            <tr>
+                <td><strong>Comment / Document</strong></td>
+                <td><strong><code>8</code> / <code>9</code></strong></td>
+                <td>註解節點為 <code>8</code>；Document 文件根節點為 <code>9</code>。</td>
+            </tr>
+        </table>
+
+        <h3>2. 必考程式：<code>dom-8.html</code> 完整程式碼與注解</h3>
+        <p><code>dom-8.html</code> 是整個 DOM 單元的母體程式（後續作業 <code>domhw-2</code> ~ <code>domhw-5</code> 都是由它修改而來）：</p>
+        <pre><code>fetch('book4.xml')
+    .then(response =&gt; response.text())
+    .then(str =&gt; (new window.DOMParser()).parseFromString(str, "text/xml"))
+    .then(xmlDom =&gt; {
+        // 1. 顯示根元素名稱 (booklist) 與根元素底下所有文字內容
+        document.write(xmlDom.documentElement.tagName);
+        document.write("(" + xmlDom.documentElement.textContent + ")&lt;br /&gt;");
+
+        // 2. 取出根元素 (booklist) 的所有子節點 (含空白換行 Text 節點與 book 元素節點)
+        fnodeList = xmlDom.documentElement.childNodes;
+
+        // 3. 第一層迴圈：走訪每個 &lt;book&gt;
+        for (let i = 0; i &lt; fnodeList.length; i++) {
+            if (fnodeList[i].nodeType == 1) { // 只處理 Element 節點 (type 1)
+                document.write("&amp;nbsp;&amp;nbsp;+-- " + i + ":" + fnodeList[i].tagName);
+                document.write("(" + fnodeList[i].textContent + ") &lt;br /&gt;");
+
+                // 4. 若 &lt;book&gt; 擁有子節點，進入第二層迴圈走訪 code, title, author, price
+                if (fnodeList[i].hasChildNodes()) {
+                    snodeList = fnodeList[i].childNodes;
+                    for (let j = 0; j &lt; snodeList.length; j++) {
+                        if (snodeList[j].nodeType == 1) { // 只處理 Element 節點 (type 1)
+                            document.write("&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;+-- " + snodeList[j].tagName);
+                            document.write("(" + snodeList[j].textContent + ")&lt;br /&gt;");
+                        }
+                    }
+                }
+            }
+        }
+    })
+    .catch(error =&gt; console.error('Error loading XML:', error));</code></pre>
+
+        <div class="callout callout-warn">
+            <div class="callout-title">🔥 考前必背問答：為什麼 <code>dom-8.html</code> 輸出是 <code>+-- 1:book</code>、<code>+-- 3:book</code>、<code>+-- 5:book</code>？</div>
+            <p>因為在 <code>book4.xml</code> 中，<code>&lt;booklist&gt;</code> 與各個 <code>&lt;book&gt;</code> 標籤之間有<strong>換行與空白字元</strong>，DOM 剖析器會將這些換行空白視為 <strong>Text 節點 (<code>nodeType == 3</code>)</strong>，放在 <code>fnodeList[0]</code>、<code>fnodeList[2]</code>、<code>fnodeList[4]</code>、<code>fnodeList[6]</code>；而真正的 <code>&lt;book&gt;</code> 元素節點 (<code>nodeType == 1</code>) 則位於索引 <code>1</code>、<code>3</code>、<code>5</code>。由於程式加了 <code>if (fnodeList[i].nodeType == 1)</code>，因此只印出 <code>i = 1, 3, 5</code>。</p>
+        </div>
+    </section>
+
+    <!-- ==================== 6. 模擬試題 ==================== -->
+    <section id="sec-quiz" class="topic-section">
+        <div class="topic-header">
+            <h2>📝 考前實戰模擬試題（點擊展開詳解）</h2>
+            <span class="badge badge-quiz">精選 6 大必考題型</span>
+        </div>
+
+        <!-- Q1 -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 1 題｜超連結與路徑】假設目前網頁位於 <code>http://localhost/htmlch06/ch061/link-b.html</code>：</div>
+            <p>(1) 若要在網頁中加入一個超連結「回上一層的 6-2.html」，且設定快速鍵為 <code>Alt + Z</code>，HTML 標籤該怎麼寫？<br>
+               (2) 若要連結到同目錄下 <code>6-5.html</code> 檔案內的 <code>date-2</code> 標號處，且要求未點選過為藍色、點選過為綠色、按住不放為粉紅色，<code>&lt;body&gt;</code> 與 <code>&lt;a&gt;</code> 該如何撰寫？</p>
+            <details>
+                <summary>👉 點擊查看標準解答</summary>
+                <div class="ans-body">
+                    <pre><code>&lt;!-- (1) 回上一層目錄用 ../，快速鍵用 accesskey --&gt;
+&lt;a href="../6-2.html" accesskey="z"&gt;回上一層的 6-2.html&lt;/a&gt;
+
+&lt;!-- (2) body 設定 link / vlink / alink；跨檔案標號用 檔名#標號名稱 --&gt;
+&lt;body link="blue" vlink="green" alink="pink"&gt;
+    &lt;a href="6-5.html#date-2"&gt;前往 6-5.html 的 date-2 段落&lt;/a&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 2 題｜圖片與影像地圖 Image Map】請為校園地圖 <code>nfu.gif</code> 撰寫一段名為 <code>nfumap</code> 的地圖索引：</div>
+            <p>需包含三個超連結區域：① 長方形「活動中心」（左上角座標 <code>10,20</code>、右下角 <code>100,80</code>，連至 <code>act.html</code>）、② 圓形「圖書館」（圓心 <code>200,150</code>、半徑 <code>60</code>，連至 <code>lib.html</code>）、③ 三角形「餐廳」（三個頂點 <code>300,10</code>、<code>350,90</code>、<code>250,90</code>，連至 <code>food.html</code>）。</p>
+            <details>
+                <summary>👉 點擊查看標準解答</summary>
+                <div class="ans-body">
+                    <pre><code>&lt;map name="nfumap"&gt;
+    &lt;area shape="rect"   coords="10,20,100,80"           href="act.html"  alt="活動中心"&gt;
+    &lt;area shape="circle" coords="200,150,60"             href="lib.html"  alt="圖書館"&gt;
+    &lt;area shape="poly"   coords="300,10,350,90,250,90"   href="food.html" alt="餐廳"&gt;
+&lt;/map&gt;
+&lt;img src="nfu.gif" usemap="#nfumap"&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 3 題｜Well-Formed XML 除錯題】下列 XML 文件共有 7 處違反 Well-Formed 條件，請全數找出並寫出修正後的程式碼：</div>
+            <pre><code>&lt;?xml encoding="utf-8"&gt;
+&lt;101BookStore&gt;
+  &lt;book code=B001 code="B002"&gt;
+    &lt;title&gt;Java &amp; XML 實務 &lt;author&gt;陳長念&lt;/title&gt;&lt;/author&gt;
+    &lt;price currency='TWD"&gt;580&lt;/Price&gt;
+    &lt;br&gt;
+  &lt;/book&gt;
+&lt;/101BookStore&gt;</code></pre>
+            <details>
+                <summary>👉 點擊查看 7 處錯誤解析與修正後程式碼</summary>
+                <div class="ans-body">
+                    <ol>
+                        <li>第 1 列：缺少 <code>version="1.0"</code>，且結尾少了 <code>?</code>（應為 <code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code>）。</li>
+                        <li>第 2、8 列：根標籤名稱 <code>101BookStore</code> 以數字開頭，違反物件命名規則（可改為 <code>_101BookStore</code> 或 <code>BookStore101</code>）。</li>
+                        <li>第 3 列：屬性值 <code>B001</code> 未加引號，且同一個標籤內重複設定了兩次 <code>code</code> 屬性。</li>
+                        <li>第 4 列：文字中的特殊字元 <code>&amp;</code> 必須改為 <code>&amp;amp;</code>；且 <code>&lt;title&gt;</code> 與 <code>&lt;author&gt;</code> 交錯重疊，未滿足巢狀排列。</li>
+                        <li>第 5 列：<code>currency='TWD"</code> 單雙引號不成對；且起始 <code>&lt;price&gt;</code> 與結束 <code>&lt;/Price&gt;</code> 大小寫不一致。</li>
+                        <li>第 6 列：空標籤 <code>&lt;br&gt;</code> 未加斜線結尾，應改為 <code>&lt;br /&gt;</code>。</li>
+                    </ol>
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;BookStore101&gt;
+  &lt;book code="B001"&gt;
+    &lt;title&gt;Java &amp;amp; XML 實務&lt;/title&gt;
+    &lt;author&gt;陳長念&lt;/author&gt;
+    &lt;price currency="TWD"&gt;580&lt;/price&gt;
+    &lt;br /&gt;
+  &lt;/book&gt;
+&lt;/BookStore101&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q4 -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 4 題｜DTD 判斷與撰寫】請根據下方內部 DTD，判斷哪一個屬性值或結構不合法，並寫出一份合法的 Validating XML：</div>
+            <pre><code>&lt;!ELEMENT 汽車 (品牌, 車主, 保險公司*, 銀行代款?, 維修地點+)&gt;
+&lt;!ELEMENT 品牌 (#PCDATA)&gt;
+&lt;!ELEMENT 車主 (#PCDATA)&gt;
+&lt;!ELEMENT 保險公司 (#PCDATA)&gt;
+&lt;!ELEMENT 銀行代款 (國內銀行|國外銀行)&gt;
+&lt;!ELEMENT 國內銀行 (#PCDATA)&gt;
+&lt;!ELEMENT 國外銀行 (#PCDATA)&gt;
+&lt;!ELEMENT 維修地點 (#PCDATA)&gt;
+&lt;!ATTLIST 汽車 車號 ID #REQUIRED&gt;
+&lt;!ATTLIST 汽車 出廠年份 NMTOKEN "2026"&gt;
+&lt;!ATTLIST 車主 性別 (男|女) "男"&gt;</code></pre>
+            <details>
+                <summary>👉 點擊查看考點解析與合法的 Validating XML</summary>
+                <div class="ans-body">
+                    <ul>
+                        <li><strong>考點 1</strong>：<code>車號</code> 型態為 <code>ID</code>（必填 <code>#REQUIRED</code>），<strong>開頭絕對不能是數字</strong>（例如寫 <code>車號="1234-AB"</code> 會驗證失敗，必須寫 <code>車號="TW-1234"</code>）。</li>
+                        <li><strong>考點 2</strong>：<code>出廠年份</code> 型態為 <code>NMTOKEN</code>，開頭可以是數字（故 <code>"2026"</code> 合法），且有預設值可省略。</li>
+                        <li><strong>考點 3</strong>：<code>保險公司*</code> 可 0~多次；<code>銀行代款?</code> 可 0~1 次（若有寫，內部必須從 <code>國內銀行</code> 與 <code>國外銀行</code> 二選一）；<code>維修地點+</code> 必須至少 1 次。</li>
+                    </ul>
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE 汽車 [
+  &lt;!ELEMENT 汽車 (品牌, 車主, 保險公司*, 銀行代款?, 維修地點+)&gt;
+  &lt;!ELEMENT 品牌 (#PCDATA)&gt;
+  &lt;!ELEMENT 車主 (#PCDATA)&gt;
+  &lt;!ELEMENT 保險公司 (#PCDATA)&gt;
+  &lt;!ELEMENT 銀行代款 (國內銀行|國外銀行)&gt;
+  &lt;!ELEMENT 國內銀行 (#PCDATA)&gt;
+  &lt;!ELEMENT 國外銀行 (#PCDATA)&gt;
+  &lt;!ELEMENT 維修地點 (#PCDATA)&gt;
+  &lt;!ATTLIST 汽車 車號 ID #REQUIRED&gt;
+  &lt;!ATTLIST 汽車 出廠年份 NMTOKEN "2026"&gt;
+  &lt;!ATTLIST 車主 性別 (男|女) "男"&gt;
+]&gt;
+&lt;汽車 車號="CAR-8888" 出廠年份="2026"&gt;
+  &lt;品牌&gt;Toyota&lt;/品牌&gt;
+  &lt;車主 性別="男"&gt;陳彼德&lt;/車主&gt;
+  &lt;銀行代款&gt;
+    &lt;國內銀行&gt;台灣銀行&lt;/國內銀行&gt;
+  &lt;/銀行代款&gt;
+  &lt;維修地點&gt;虎尾廠&lt;/維修地點&gt;
+  &lt;維修地點&gt;斗六廠&lt;/維修地點&gt;
+&lt;/汽車&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q5 -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 5 題｜DOM 與 <code>dom-8.html</code> 實作改寫】請修改 <code>dom-8.html</code>，讀取 <code>book5.xml</code> 並輸出含「書號、書名、作者（多作者以空格隔開）、價錢、是否有存貨（讀取 <code>&lt;book&gt;</code> 的 <code>sales</code> 屬性）」的 HTML 表格：</div>
+            <details>
+                <summary>👉 點擊查看標準解答程式碼</summary>
+                <div class="ans-body">
+                    <pre><code>fetch('book5.xml')
+    .then(response =&gt; response.text())
+    .then(str =&gt; (new window.DOMParser()).parseFromString(str, "text/xml"))
+    .then(xmlDom =&gt; {
+        let html = "&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;書號&lt;/th&gt;&lt;th&gt;書名&lt;/th&gt;&lt;th&gt;作者&lt;/th&gt;&lt;th&gt;價錢&lt;/th&gt;&lt;th&gt;是否有存貨&lt;/th&gt;&lt;/tr&gt;";
+        let books = xmlDom.getElementsByTagName("book");
+        for (let i = 0; i &lt; books.length; i++) {
+            let code = books[i].getElementsByTagName("code")[0].textContent;
+            let title = books[i].getElementsByTagName("title")[0].textContent;
+            let price = books[i].getElementsByTagName("price")[0].textContent;
+            let sales = books[i].getAttribute("sales"); // 讀取 sales 屬性 (Y/N)
+
+            // 處理多位作者
+            let authorNodes = books[i].getElementsByTagName("author");
+            let authorStr = "";
+            for (let j = 0; j &lt; authorNodes.length; j++) {
+                authorStr += authorNodes[j].textContent + " ";
+            }
+
+            html += "&lt;tr&gt;";
+            html += "&lt;td&gt;" + code + "&lt;/td&gt;";
+            html += "&lt;td&gt;" + title + "&lt;/td&gt;";
+            html += "&lt;td&gt;" + authorStr.trim() + "&lt;/td&gt;";
+            html += "&lt;td&gt;" + price + "&lt;/td&gt;";
+            html += "&lt;td&gt;" + sales + "&lt;/td&gt;";
+            html += "&lt;/tr&gt;";
+        }
+        html += "&lt;/table&gt;";
+        document.write(html);
+    })
+    .catch(error =&gt; console.error('Error loading XML:', error));</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q6: 課堂作業原題 hw4-1.xml -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 6 題｜簡報作業原題 <code>hw4-1.xml</code>】將下面改成滿足 Well-Formed XML 條件：</div>
+            <pre><code>&lt;?xml  encoding=“utf-8"&gt;
+&lt;item productId=X123-782-890&gt;
+&lt;productName&gt;電視機 &lt;category&gt;
+&lt;/productName&gt;家電&lt;/category&gt;
+&lt;quantity&gt;1&lt;/quantity&gt; 
+&lt;price currency='NT"&gt;12100&lt;/Price&gt;
+&lt;discount&gt;2000&lt;discount/&gt;
+&lt;/makeDate&gt;2000-01-22&lt;makeDate&gt;
+&lt;img src="gif"&gt;
+&lt;/item&gt;</code></pre>
+            <details>
+                <summary>👉 點擊查看 hw4-1.xml 標準解答</summary>
+                <div class="ans-body">
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;item productId="X123-782-890"&gt;
+    &lt;productName&gt;電視機&lt;/productName&gt;
+    &lt;category&gt;家電&lt;/category&gt;
+    &lt;quantity&gt;1&lt;/quantity&gt;
+    &lt;price currency="NT"&gt;12100&lt;/price&gt;
+    &lt;discount&gt;2000&lt;/discount&gt;
+    &lt;makeDate&gt;2000-01-22&lt;/makeDate&gt;
+    &lt;img src="gif" /&gt;
+&lt;/item&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q7: 簡報作業原題 hw5-1.xml & 範例 5-12.xml -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 7 題｜簡報作業原題 <code>hw5-1.xml</code> 與 <code>5-12.xml</code> Namespace 觀念】</div>
+            <p>(1) 在底下 <code>&lt;課程&gt;</code> 內宣告一內定的 namespace，在 <code>&lt;教師&gt;</code> 內宣告一明確的 namespace（並修正原題結尾標籤錯誤 <code>&lt; /課程 &gt;</code>）。<br>
+               (2) 在範例 <code>5-12.xml</code> 中，為何 <code>&lt;bad n1:a="1" n2:a="2" /&gt;</code> 不合法，但 <code>&lt;good a="1" n1:a="2" /&gt;</code>（即使有設內定 <code>xmlns="http://www.w3.org"</code>）卻合法？</p>
+            <details>
+                <summary>👉 點擊查看 hw5-1.xml 與 5-12.xml 標準解答</summary>
+                <div class="ans-body">
+                    <p><strong>(1) <code>hw5-1.xml</code> 解答：</strong></p>
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;課程 id="39393" xmlns="http://www.nfu.edu.tw/ns/course"&gt;
+  &lt;課名 學分="3"&gt;Web技術與應用&lt;/課名&gt;
+  &lt;教室&gt;綜三館501&lt;/教室&gt;
+  &lt;t:教師 id="ART-7529" sex="男" xmlns:t="http://www.nfu.edu.tw/ns/teacher"&gt;
+    &lt;t:姓名&gt;許乙清&lt;/t:姓名&gt;
+    &lt;t:興趣&gt;慢跑&lt;/t:興趣&gt;
+    &lt;t:興趣&gt;爬山&lt;/t:興趣&gt;
+    &lt;t:興趣&gt;Coffee&lt;/t:興趣&gt;
+    &lt;t:興趣&gt;Tea&lt;/t:興趣&gt;
+  &lt;/t:教師&gt;
+&lt;/課程&gt;</code></pre>
+                    <p><strong>(2) <code>5-12.xml</code> 關鍵解析：</strong>因為 <code>n1</code> 與 <code>n2</code> 都是明確宣告且指向同一個 URI (<code>http://www.w3.org</code>)，所以 <code>n1:a</code> 與 <code>n2:a</code> 實質上是同一個屬性，違反重複屬性限制；但<strong>內定宣告 (<code>xmlns="..."</code>) 不會作用在屬性上</strong>，因此 <code>&lt;good a="1" n1:a="2" /&gt;</code> 中的 <code>a</code> 屬於「無 Namespace」，而 <code>n1:a</code> 屬於 <code>http://www.w3.org</code>，兩者不同，故為合法的 Well-Formed XML！</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Q8: 簡報作業原題 hw8-1.xml & hw8-2.xml -->
+        <div class="quiz-card">
+            <div class="quiz-q">【第 8 題｜簡報作業原題 <code>hw8-1.xml</code> &amp; <code>hw8-2.xml</code>】請依底下兩個 DTD 分別建立 Validating XML 文件：</div>
+            <pre><code>&lt;!-- 題目 A (hw8-1.xml) --&gt;
+&lt;!ELEMENT BookCatalogue (Book)*&gt;
+&lt;!ELEMENT Book (Title, Author+, ReleaseDate, ISBN?, Publisher)&gt;
+&lt;!ELEMENT Title (#PCDATA)&gt;
+&lt;!ELEMENT Author (#PCDATA)&gt;
+&lt;!ELEMENT ReleaseDate (#PCDATA)&gt;
+&lt;!ELEMENT ISBN (#PCDATA)&gt;
+&lt;!ELEMENT Publisher (Country,Company)&gt;
+&lt;!ELEMENT Country (#PCDATA)&gt;
+&lt;!ELEMENT Company (#PCDATA)&gt;
+&lt;!ATTLIST Book category CDATA #REQUIRED&gt;
+&lt;!ATTLIST Book page CDATA #REQUIRED&gt;
+&lt;!ATTLIST Author sex (男|女|male|female) "男"&gt;
+&lt;!ATTLIST Author mail CDATA #IMPLIED&gt;
+&lt;!ATTLIST Publisher city NMTOKEN "Taipei"&gt;
+&lt;!ATTLIST Publisher address NMTOKENS #REQUIRED&gt;
+
+&lt;!-- 題目 B (hw8-2.xml) --&gt;
+&lt;!ELEMENT 電視節目表 (電視頻道+)&gt;
+&lt;!ELEMENT 電視頻道 (頻道名稱, 日期+)&gt;
+&lt;!ELEMENT 頻道名稱 (#PCDATA)&gt;
+&lt;!ELEMENT 日期 (上映日期,節目+)&gt;
+&lt;!ELEMENT 上映日期 (#PCDATA)&gt;
+&lt;!ELEMENT 節目 (時段, 節目名稱, 內容簡介?)&gt;
+&lt;!ELEMENT 時段 (#PCDATA)&gt;
+&lt;!ELEMENT 節目名稱 (#PCDATA)&gt;
+&lt;!ELEMENT 內容簡介 (#PCDATA)&gt;
+&lt;!ATTLIST 電視節目表 NAME CDATA #REQUIRED&gt;
+&lt;!ATTLIST 電視頻道 頻道號碼 CDATA #REQUIRED&gt;
+&lt;!ATTLIST 節目 型式 (錄影|直播) "錄影"&gt;
+&lt;!ATTLIST 節目名稱 等級 (普通|輔導|限制) "普通"&gt;
+&lt;!ATTLIST 節目名稱 語言 CDATA #IMPLIED&gt;</code></pre>
+            <details>
+                <summary>👉 點擊查看 hw8-1.xml 與 hw8-2.xml 標準解答</summary>
+                <div class="ans-body">
+                    <pre><code>&lt;!-- ✅ hw8-1.xml 解答 (注意 address 為 NMTOKENS，可含空白隔開的多個 NMTOKEN) --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE BookCatalogue [
+  &lt;!ELEMENT BookCatalogue (Book)*&gt;
+  &lt;!ELEMENT Book (Title, Author+, ReleaseDate, ISBN?, Publisher)&gt;
+  &lt;!ELEMENT Title (#PCDATA)&gt;
+  &lt;!ELEMENT Author (#PCDATA)&gt;
+  &lt;!ELEMENT ReleaseDate (#PCDATA)&gt;
+  &lt;!ELEMENT ISBN (#PCDATA)&gt;
+  &lt;!ELEMENT Publisher (Country,Company)&gt;
+  &lt;!ELEMENT Country (#PCDATA)&gt;
+  &lt;!ELEMENT Company (#PCDATA)&gt;
+  &lt;!ATTLIST Book category CDATA #REQUIRED&gt;
+  &lt;!ATTLIST Book page CDATA #REQUIRED&gt;
+  &lt;!ATTLIST Author sex (男|女|male|female) "男"&gt;
+  &lt;!ATTLIST Author mail CDATA #IMPLIED&gt;
+  &lt;!ATTLIST Publisher city NMTOKEN "Taipei"&gt;
+  &lt;!ATTLIST Publisher address NMTOKENS #REQUIRED&gt;
+]&gt;
+&lt;BookCatalogue&gt;
+  &lt;Book category="Computer" page="520"&gt;
+    &lt;Title&gt;Web技術與應用&lt;/Title&gt;
+    &lt;Author sex="男" mail="chen@nfu.edu.tw"&gt;陳長念&lt;/Author&gt;
+    &lt;ReleaseDate&gt;2026-09-01&lt;/ReleaseDate&gt;
+    &lt;ISBN&gt;978-957-123-456-7&lt;/ISBN&gt;
+    &lt;Publisher city="Taipei" address="Sec-1 Zhongxiao-Rd"&gt;
+      &lt;Country&gt;Taiwan&lt;/Country&gt;
+      &lt;Company&gt;全華圖書&lt;/Company&gt;
+    &lt;/Publisher&gt;
+  &lt;/Book&gt;
+&lt;/BookCatalogue&gt;
+
+&lt;!-- ✅ hw8-2.xml 解答 --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE 電視節目表 [
+  &lt;!ELEMENT 電視節目表 (電視頻道+)&gt;
+  &lt;!ELEMENT 電視頻道 (頻道名稱, 日期+)&gt;
+  &lt;!ELEMENT 頻道名稱 (#PCDATA)&gt;
+  &lt;!ELEMENT 日期 (上映日期,節目+)&gt;
+  &lt;!ELEMENT 上映日期 (#PCDATA)&gt;
+  &lt;!ELEMENT 節目 (時段, 節目名稱, 內容簡介?)&gt;
+  &lt;!ELEMENT 時段 (#PCDATA)&gt;
+  &lt;!ELEMENT 節目名稱 (#PCDATA)&gt;
+  &lt;!ELEMENT 內容簡介 (#PCDATA)&gt;
+  &lt;!ATTLIST 電視節目表 NAME CDATA #REQUIRED&gt;
+  &lt;!ATTLIST 電視頻道 頻道號碼 CDATA #REQUIRED&gt;
+  &lt;!ATTLIST 節目 型式 (錄影|直播) "錄影"&gt;
+  &lt;!ATTLIST 節目名稱 等級 (普通|輔導|限制) "普通"&gt;
+  &lt;!ATTLIST 節目名稱 語言 CDATA #IMPLIED&gt;
+]&gt;
+&lt;電視節目表 NAME="週末節目表"&gt;
+  &lt;電視頻道 頻道號碼="CH08"&gt;
+    &lt;頻道名稱&gt;台視主頻&lt;/頻道名稱&gt;
+    &lt;日期&gt;
+      &lt;上映日期&gt;2026-11-08&lt;/上映日期&gt;
+      &lt;節目 型式="直播"&gt;
+        &lt;時段&gt;19:00-20:00&lt;/時段&gt;
+        &lt;節目名稱 等級="普通" 語言="國語"&gt;晚間新聞&lt;/節目名稱&gt;
+        &lt;內容簡介&gt;今日國內外重點新聞播報&lt;/內容簡介&gt;
+      &lt;/節目&gt;
+    &lt;/日期&gt;
+  &lt;/電視頻道&gt;
+&lt;/電視節目表&gt;</code></pre>
+                </div>
+            </details>
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>
+

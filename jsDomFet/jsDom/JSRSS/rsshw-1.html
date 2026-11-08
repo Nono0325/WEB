@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>rsshw-1.html</title>
+</head>
+<body>
+    <script type="text/javascript">
+        fetch('freewayrss.xml')
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+            .then(xmlDom => {
+                let channelNode = xmlDom.getElementsByTagName("channel")[0];
+                document.write("標題: " + channelNode.getElementsByTagName("title")[0].textContent + "<br />");
+                document.write("發行日期: " + channelNode.getElementsByTagName("pubDate")[0].textContent + "<br />");
+                document.write("語言: " + channelNode.getElementsByTagName("language")[0].textContent + "<br /><br />");
+
+                let items = xmlDom.getElementsByTagName("item");
+                for (let i = 0; i < items.length; i++) {
+                    let title = items[i].getElementsByTagName("title")[0]?.textContent || "";
+                    let link = items[i].getElementsByTagName("link")[0]?.textContent || "";
+                    let pubDate = items[i].getElementsByTagName("pubDate")[0]?.textContent || "";
+
+                    document.write("第 " + (i + 1) + " 筆資訊<br /><br />");
+                    document.write("標題: " + title + "<br />");
+                    document.write("鏈結網址: " + link + "<br />");
+                    document.write("發佈日期時間: " + pubDate + "<br /><br />");
+                }
+            })
+            .catch(error => console.error('Error loading XML:', error));
+    </script>
+</body>
+</html>

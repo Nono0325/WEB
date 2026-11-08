@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 技術與應用 - 作業成果導覽與重點整理</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --dark: #0f172a;
+            --gray-bg: #f8fafc;
+            --card-border: #e2e8f0;
+            --text-main: #334155;
+            --text-dark: #1e293b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 0.75rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            width: fit-content;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .card .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+        .btn-secondary:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .summary-card h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #0f172a;
+        }
+        .summary-card h3:first-of-type {
+            margin-top: 0;
+        }
+        .summary-card ul, .summary-card ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .summary-card li {
+            margin-bottom: 0.5rem;
+        }
+        code {
+            background: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 0.9em;
+        }
+        .badge-method {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Web技術與應用 - 作業成果與重點整理</h1>
+    <p>涵蓋 JavaScript DOM XML 操作、Fetch API 非同步資料解析、政府開放資料 (Open Data PM2.5) 與 RSS Feed 應用</p>
+</header>
+
+<div class="container">
+
+    <!-- 考前重點講義與模擬題庫入口 -->
+    <div class="card" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; margin-bottom: 2rem;">
+        <div>
+            <span class="card-tag" style="background: #1d4ed8; color: #fff;">🔥 考前衝刺必讀</span>
+            <h3 style="font-size: 1.4rem; color: #1e3a8a;">Web 技術與應用 — 考前重點講義與實戰模擬題庫 (exam_guide.html)</h3>
+            <p style="color: #1e293b;">完整收錄本次考試五大範圍：<strong>① HTML 超連結 (ch06)</strong>、<strong>② 圖片與影像地圖 Image Map (ch07)</strong>、<strong>③ Well-Formed XML 十大條件與除錯 (xmlch02~05)</strong>、<strong>④ DTD 文件型態定義與 10 種屬性型態 (xmlch06, 08)</strong>、<strong>⑤ XML DOM 與 <code>dom-8.html</code> 深度解析</strong>，並附帶互動式展開解答的模擬考題！</p>
+        </div>
+        <div class="btn-group">
+            <a href="exam_guide.html" class="btn btn-primary" target="_blank">📖 開啟考前重點講義與模擬題庫</a>
+            <a href="dom-8.html" class="btn btn-secondary" target="_blank">檢視 dom-8.html 執行結果</a>
+        </div>
+    </div>
+
+    <!-- 第一單元：DOM 作業 (MVSJSDOMFetch.pptx) -->
+    <h2 class="section-title">單元一：JavaScript DOM 與 XML 解析作業 (MVSJSDOMFetch)</h2>
+    <div class="grid">
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 1</span>
+                <h3>domhw-1.html</h3>
+                <p>讀取 <code>book2.xml</code>，走訪根節點所有子節點（檢查 <code>nodeType == 1</code> 元素節點），雙重迴圈逐一印出書籍及其所有屬性子元素（title、author、year、price）名稱與文字內容。</p>
+            </div>
+            <div class="btn-group">
+                <a href="domhw-1.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSDOM/domhw-1.html" class="btn btn-secondary" target="_blank">JSDOM 目錄版</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 2</span>
+                <h3>domhw-2.html</h3>
+                <p>讀取 <code>book4.xml</code> 與 <code>book5.xml</code>，以標準 HTML 表格 (<code>&lt;table border="1"&gt;</code>) 呈現書號、書名、作者、價錢。特別處理一本書有多位作者的情況，將多作者以空格串接完整列出。</p>
+            </div>
+            <div class="btn-group">
+                <a href="domhw-2.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSDOM/domhw-2.html" class="btn btn-secondary" target="_blank">JSDOM 目錄版</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 3</span>
+                <h3>domhw-3.html</h3>
+                <p>讀取 <code>book5.xml</code>，在表格最後新增一欄「是否有存貨」，利用 <code>books[i].getAttribute("sales")</code> 取出 <code>&lt;book&gt;</code> 標籤上的屬性值 (Y / N) 並顯示於表格中。</p>
+            </div>
+            <div class="btn-group">
+                <a href="domhw-3.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSDOM/domhw-3.html" class="btn btn-secondary" target="_blank">JSDOM 目錄版</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 4</span>
+                <h3>domhw-4.html</h3>
+                <p>串接政府開放資料平台的空氣品質即時污染指標 <code>aqx_p_432.xml</code>，解析 <code>&lt;data&gt;</code> 節點，以表格呈現各測站的「區域 (sitename)」、「縣市 (county)」、「PM2.5」與「發佈時間」。</p>
+            </div>
+            <div class="btn-group">
+                <a href="domhw-4.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSDOM/domhw-4.html" class="btn btn-secondary" target="_blank">JSDOM 目錄版</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 5</span>
+                <h3>domhw-5.html</h3>
+                <p>依據世界衛生組織與環保署標準，針對 PM2.5 數值加入分級警示色彩（0~15 為綠色良好、16~35 為黃色、36~65 為橙色、>65 為紅色有害），強化視覺化資料判讀效果。</p>
+            </div>
+            <div class="btn-group">
+                <a href="domhw-5.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSDOM/domhw-5.html" class="btn btn-secondary" target="_blank">JSDOM 目錄版</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二單元：DOM 課堂基礎範例 (dom-1 ~ dom-8.html) -->
+    <h2 class="section-title">課堂範例：JavaScript DOM 基礎與樹狀走訪 (dom-1 ~ dom-8)</h2>
+    <div class="grid">
+        <div class="card">
+            <div>
+                <span class="card-tag">必考核心範例</span>
+                <h3>dom-8.html（雙層迴圈走訪 XML 樹）</h3>
+                <p>讀取 <code>book4.xml</code>，輸出根元素 <code>booklist</code>，並以雙層迴圈配合 <code>childNodes</code>、<code>nodeType == 1</code> 與 <code>hasChildNodes()</code> 展開樹狀階層。</p>
+            </div>
+            <div class="btn-group">
+                <a href="dom-8.html" class="btn btn-primary" target="_blank">開啟 dom-8.html</a>
+                <a href="book4.xml" class="btn btn-secondary" target="_blank">檢視 book4.xml</a>
+                <a href="book5.xml" class="btn btn-secondary" target="_blank">檢視 book5.xml</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">課堂範例 1~7</span>
+                <h3>dom-1.html ~ dom-7.html</h3>
+                <p>涵蓋 <code>getElementsByTagName</code>、<code>childNodes</code>、<code>firstChild</code> / <code>nextSibling</code>、<code>getAttribute("lang")</code> 與表格輸出。</p>
+            </div>
+            <div class="btn-group" style="flex-wrap: wrap;">
+                <a href="dom-1.html" class="btn btn-secondary" target="_blank">dom-1</a>
+                <a href="dom-2.html" class="btn btn-secondary" target="_blank">dom-2</a>
+                <a href="dom-3.html" class="btn btn-secondary" target="_blank">dom-3</a>
+                <a href="dom-4.html" class="btn btn-secondary" target="_blank">dom-4</a>
+                <a href="dom-5.html" class="btn btn-secondary" target="_blank">dom-5</a>
+                <a href="dom-6.html" class="btn btn-secondary" target="_blank">dom-6</a>
+                <a href="dom-7.html" class="btn btn-secondary" target="_blank">dom-7</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二單元：RSS 作業 (JSRSSFetch.pptx) -->
+    <h2 class="section-title">單元二：JavaScript RSS Feed 訂閱解析作業 (JSRSSFetch)</h2>
+    <div class="grid">
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 6</span>
+                <h3>rsshw-1.html</h3>
+                <p>讀取高速公路局 RSS 即時路況資訊 <code>freewayrss.xml</code>，上方顯示頻道總體資訊（標題、發行日期、語言），下方逐筆列出所有 <code>&lt;item&gt;</code> 的標題、鏈結網址與發佈時間。</p>
+            </div>
+            <div class="btn-group">
+                <a href="rsshw-1.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSRSS/rsshw-1.html" class="btn btn-secondary" target="_blank">JSRSS 目錄版</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <span class="card-tag">作業 7</span>
+                <h3>rsshw-2.html</h3>
+                <p>將 RSS 項目美化為獨立表格排版，並運用模數運算 (<code>i % 2 === 0</code>) 實作交錯色彩（奇數筆為淺綠色 <code>#c9ebb0</code>、偶數筆為白色底色），打造易讀清晰的資訊卡片。</p>
+            </div>
+            <div class="btn-group">
+                <a href="rsshw-2.html" class="btn btn-primary" target="_blank">直接開啟</a>
+                <a href="jsDomFet/jsDom/JSRSS/rsshw-2.html" class="btn btn-secondary" target="_blank">JSRSS 目錄版</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 課程重點整理 -->
+    <h2 class="section-title">課程重點精華整理</h2>
+    <div class="summary-card">
+        <h3>1. DOM (Document Object Model) 核心觀念與架構</h3>
+        <ul>
+            <li><strong>跨平台與語言獨立介面</strong>：DOM 讓程式（如 JavaScript）能動態讀取、走訪與修改 HTML 及 XML 文件之內容、結構與樣式。</li>
+            <li><strong>樹狀結構 (Tree Structure)</strong>：整份 XML 會被解析為一個層級節點樹（Document 根 -> 元素節點 -> 文字節點/屬性節點）。</li>
+            <li><strong>常見 Node Type 判定</strong>：
+                <ul>
+                    <li><code>nodeType == 1</code>：Element 元素節點（如 <code>&lt;book&gt;</code>, <code>&lt;title&gt;</code>）</li>
+                    <li><code>nodeType == 2</code>：Attribute 屬性節點</li>
+                    <li><code>nodeType == 3</code>：Text 文字節點（包含標籤間的空白與換行）</li>
+                    <li><code>nodeType == 9</code>：Document 文件節點</li>
+                </ul>
+            </li>
+            <li><strong>常用走訪與屬性 API</strong>：
+                <ul>
+                    <li><code>childNodes</code>：取得所有子節點清單（包含空白換行之 Text 節點，因此遍歷時必須搭配 <code>nodeType == 1</code> 過濾）。</li>
+                    <li><code>getElementsByTagName("標籤名")</code>：直接依照標籤名稱搜尋符合之元素陣列。</li>
+                    <li><code>getAttribute("屬性名")</code>：讀取標籤內部屬性值（如 <code>&lt;book sales="Y"&gt;</code> 的 sales）。</li>
+                    <li><code>textContent</code>：直接取得該節點及其子節點的純文字內容。</li>
+                    <li><code>firstChild</code>, <code>nextSibling</code>, <code>hasChildNodes()</code>：節點間平移與檢查子節點。</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2. Fetch API 與非同步 XML 解析模式</h3>
+        <ul>
+            <li><strong>現代標準非同步流程</strong>：
+                <pre><code>fetch('data.xml')
+  .then(response =&gt; response.text()) // 1. 取得 XML 文字內容
+  .then(str =&gt; (new window.DOMParser()).parseFromString(str, "text/xml")) // 2. 解析為 XML DOM 物件
+  .then(xmlDom =&gt; {
+      // 3. 使用 DOM API 操作 xmlDom
+  })
+  .catch(error =&gt; console.error(error));</code></pre>
+            </li>
+            <li><strong>本地檔案限制</strong>：基於瀏覽器安全政策（CORS），透過 <code>fetch</code> 載入 XML 需置於網頁伺服器（如 Visual Studio 的 IIS Express、Live Server 或 Python http.server）下執行，避免 <code>file:///</code> 協定的存取受限。</li>
+        </ul>
+
+        <h3>3. RSS 2.0 (Really Simple Syndication) 標準架構</h3>
+        <ul>
+            <li><strong>根本結構</strong>：根標籤為 <code>&lt;rss version="2.0"&gt;</code>，內部僅允許包含一個 <code>&lt;channel&gt;</code> 節點。</li>
+            <li><strong>Channel 必備三大子元素</strong>：<code>&lt;title&gt;</code> (頻道名稱)、<code>&lt;link&gt;</code> (網址)、<code>&lt;description&gt;</code> (頻道描述)。</li>
+            <li><strong>Channel 常見選用元素</strong>：<code>&lt;language&gt;</code>、<code>&lt;pubDate&gt;</code>、<code>&lt;lastBuildDate&gt;</code>、<code>&lt;copyright&gt;</code>。</li>
+            <li><strong>Item 資訊單元</strong>：<code>&lt;channel&gt;</code> 內部可包含多筆 <code>&lt;item&gt;</code>，至少需具備 <code>&lt;title&gt;</code> 或 <code>&lt;description&gt;</code> 其中之一，常用元素還包括 <code>&lt;link&gt;</code>、<code>&lt;pubDate&gt;</code>、<code>&lt;author&gt;</code>、<code>&lt;enclosure&gt;</code> (用於 Podcast 串接音檔)。</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>domhw-5.html</title>
+</head>
+<body>
+    <h1>台灣各區域PM 2.5值</h1>
+    <hr />
+    <div id="table-container"></div>
+
+    <script type="text/javascript">
+        // 依照世界衛生組織 PM2.5 標準分級決定顏色
+        function getPM25Color(valStr) {
+            let val = parseFloat(valStr);
+            if (isNaN(val)) return "black";
+            if (val <= 15) return "green";           // 良好 (0-15)
+            else if (val <= 35) return "#d4a017";     // 普通/小心 (16-35, 黃色)
+            else if (val <= 65) return "orange";      // 對敏感族群不健康 (36-65, 橙色)
+            else if (val <= 150) return "red";        // 對所有族群不健康 (66-150, 紅色)
+            else if (val <= 250) return "purple";     // 非常不健康 (151-250, 紫色)
+            else return "maroon";                     // 危害 (251+, 褐紫色)
+        }
+
+        fetch('aqx_p_432.xml')
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+            .then(xmlDom => {
+                let html = "<table border='1'><tr><th>區域</th><th>縣市</th><th>PM2.5</th><th>發佈時間</th></tr>";
+                let dataList = xmlDom.getElementsByTagName("data");
+                for (let i = 0; i < dataList.length; i++) {
+                    let sitename = dataList[i].getElementsByTagName("sitename")[0]?.textContent || "";
+                    let county = dataList[i].getElementsByTagName("county")[0]?.textContent || "";
+                    let pm25 = dataList[i].getElementsByTagName("pm2.5")[0]?.textContent || "";
+                    let publishtime = dataList[i].getElementsByTagName("publishtime")[0]?.textContent || "";
+
+                    let color = getPM25Color(pm25);
+
+                    html += "<tr>";
+                    html += "<td>" + sitename + "</td>";
+                    html += "<td>" + county + "</td>";
+                    html += "<td><font color='" + color + "'><b>" + pm25 + "</b></font></td>";
+                    html += "<td>" + publishtime + "</td>";
+                    html += "</tr>";
+                }
+                html += "</table>";
+                document.getElementById("table-container").innerHTML = html;
+            })
+            .catch(error => console.error('Error loading XML:', error));
+    </script>
+</body>
+</html>

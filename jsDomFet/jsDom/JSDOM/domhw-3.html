@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>domhw-3.html</title>
+</head>
+<body>
+    <h2>書名表格顯示</h2>
+    <hr />
+    <div id="table-container"></div>
+    <hr />
+
+    <script type="text/javascript">
+        fetch('book5.xml')
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+            .then(xmlDom => {
+                let html = "<table border='1'><tr><th>書號</th><th>書名</th><th>作者</th><th>價錢</th><th>是否有存貨</th></tr>";
+                let books = xmlDom.getElementsByTagName("book");
+                for (let i = 0; i < books.length; i++) {
+                    let code = books[i].getElementsByTagName("code")[0].textContent;
+                    let title = books[i].getElementsByTagName("title")[0].textContent;
+                    let price = books[i].getElementsByTagName("price")[0].textContent;
+                    // 讀取 <book> 的 sales 屬性
+                    let sales = books[i].getAttribute("sales") || "";
+                    
+                    // 取得作者列表
+                    let authors = [];
+                    let authorNodes = books[i].getElementsByTagName("author");
+                    for (let j = 0; j < authorNodes.length; j++) {
+                        authors.push(authorNodes[j].textContent);
+                    }
+                    let authorStr = authors.join(" ");
+
+                    html += "<tr>";
+                    html += "<td>" + code + "</td>";
+                    html += "<td>" + title + "</td>";
+                    html += "<td>" + authorStr + "</td>";
+                    html += "<td>" + price + "</td>";
+                    html += "<td>" + sales + "</td>";
+                    html += "</tr>";
+                }
+                html += "</table>";
+                document.getElementById("table-container").innerHTML = html;
+            })
+            .catch(error => console.error('Error loading XML:', error));
+    </script>
+</body>
+</html>

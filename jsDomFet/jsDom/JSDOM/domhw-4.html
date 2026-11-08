@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>domhw-4.html</title>
+</head>
+<body>
+    <h1>台灣各區域PM 2.5值</h1>
+    <hr />
+    <div id="table-container"></div>
+
+    <script type="text/javascript">
+        fetch('aqx_p_432.xml')
+            .then(response => response.text())
+            .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+            .then(xmlDom => {
+                let html = "<table border='1'><tr><th>區域</th><th>縣市</th><th>PM2.5</th><th>發佈時間</th></tr>";
+                let dataList = xmlDom.getElementsByTagName("data");
+                for (let i = 0; i < dataList.length; i++) {
+                    let sitename = dataList[i].getElementsByTagName("sitename")[0]?.textContent || "";
+                    let county = dataList[i].getElementsByTagName("county")[0]?.textContent || "";
+                    let pm25 = dataList[i].getElementsByTagName("pm2.5")[0]?.textContent || "";
+                    let publishtime = dataList[i].getElementsByTagName("publishtime")[0]?.textContent || "";
+
+                    html += "<tr>";
+                    html += "<td>" + sitename + "</td>";
+                    html += "<td>" + county + "</td>";
+                    html += "<td>" + pm25 + "</td>";
+                    html += "<td>" + publishtime + "</td>";
+                    html += "</tr>";
+                }
+                html += "</table>";
+                document.getElementById("table-container").innerHTML = html;
+            })
+            .catch(error => console.error('Error loading XML:', error));
+    </script>
+</body>
+</html>
